@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vanilla Calendar</title>
+        <meta name="description" content="A simple Calendar in JS Vanilla">
+        <meta name="author" content="https://github.com/marssola/vanilla-calendar">
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="src/css/vanilla-calendar.css">
+        <script src="src/js/vanilla-calendar.js"></script>
+    </head>
+    <body>
+        <div class="content">
+            <h2>VanillaCalendar</h2>
+            <p>It's a simple calendar in JS Vanilla</p>
+            
+            <h3>Options</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Default/Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>selector</td>
+                        <td>string</td>
+                        <td>Required selector for construct Calendar</td>
+                    </tr>
+                    <tr>
+                        <td>pastDates</td>
+                        <td>true</td>
+                        <td>Enable/Disable past dates</td>
+                    </tr>
+                    <tr>
+                        <td>availableWeekDays</td>
+                        <td>array empty</td>
+                        <td>
+                            Set the available weekdays<br/>
+                            <b>Note: If you need to pass a value when the user chooses a date, set in the object</b>
+                            <ul>
+                                <li><span class="inline-code">key</span> day</li>
+                                <li><span class="inline-code">value</span> weekday name</li>
+                            </ul>
+                            Array of Objects: 
+<pre>[
+    {day: 'monday', others: values}, 
+    {day: 'tuesday', others: values}
+]</pre>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>availableDates</td>
+                        <td>array empty</td>
+                        <td>
+                            Set the available dates<br/>
+                            <b>Note: If you need to pass a value when the user chooses a date, set in the object</b>
+                            <ul>
+                                <li><span class="inline-code">key</span> date</li>
+                                <li><span class="inline-code">value</span> yyyy-mm-dd</li>
+                            </ul>
+                            Array of Objects: 
+<pre>[
+    {date: '2019-09-15', others: values}, 
+    {date: '2019-09-16', others: values}, 
+    {date: '2019-09-17', others: values}, 
+    {date: '2019-09-25', others: values}, 
+    {date: '2019-09-26', others: values}
+]</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>datesFilter</td>
+                        <td>false</td>
+                        <td>Required to enable dates filtering: availableWeekDays, availableDates</td>
+                    </tr>
+                    <tr>
+                        <td>months</td>
+                        <td><pre>['January', ..., 'December']</pre>
+                        </td>
+                        <td>
+                            <pre>['Janeiro', ..., 'Dezembro']</pre>                        
+                            Months name to header of calendar
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>shortWeekday</td>
+                        <td><pre>['Sun', ..., 'Sat']</pre></td>
+                        <td>
+                            <pre>['Dom', ..., 'Sáb']</pre>
+                            Short weekday name
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onSelect</td>
+                        <td><pre>Callback function</pre></td>
+                        <td>
+                            A  callback function to capture the date selected<br/>
+                            <ul>
+                                <li><span class="inline-code">data<span> is result contained in the selected date</li>
+                                <li><span class="inline-code">element<span> is the element clicked</li>
+                            </ul>
+                            e.g:
+<pre>
+onSelect((data, element) => {
+    
+})
+</pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Functions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Public methods</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>init()</td>
+                        <td>Construct the calendar</td>
+                    </tr>
+                    <tr>
+                        <td>destroy()</td>
+                        <td>Destroy the calendar</td>
+                    </tr>
+                    <tr>
+                        <td>reset()</td>
+                        <td>Reset the calendar (destroy and init)</td>
+                    </tr>
+                    <tr>
+                        <td>set(object)</td>
+                        <td>
+                            Set new value for the options, e.g:
+<pre>
+// Define available dates
+set({
+    availableDates: [
+        {date: '2019-10-05'},
+        {date: '2019-10-08'},
+        {date: '2019-10-10'},
+        {date: '2019-10-15'},
+        {date: '2019-10-20'}
+    ], 
+    datesFilter: true
+})
+</pre>
+<pre>
+// Define available weekdays
+set({
+    availableWeekDays: [
+        {day: 'monday'},
+        {day: 'wednesday'},
+        {day: 'friday'}
+    ], 
+    datesFilter: true
+})
+</pre>
+<pre>
+// Disable dates filtering
+set({
+    datesFilter: false
+})
+</pre>
+<pre>
+// Enable/Disable past dates
+set({
+    pastDates: true/false
+})
+</pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Usage</h3>
+            <pre>
+&lt;!-- html --&gt;
+&lt;div id="myCalendar" class="vanilla-calendar"&gt;&lt;/div&gt;
+            </pre>
+            <pre>
+// js
+let calendar = new VanillaCalendar({
+    selector: "#myCalendar"
+})
+            </pre>
+        
+            <h3>Filter dates</h3>
+            <p>To enable </p>
+<pre>
+calendar.set({datesFilter: true})
+</pre>
+        </div>
+        <div>
+            <div class="area-buttons">
+                <button class="info" name="pastDates">Disable past dates</button>
+                <button class="info" name="availableDates">Set available dates</button>
+                <button class="info" name="availableWeekDays">Set available weekdays</button>
+            </div>
+            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+        </div>
+        <script>
+            let pastDates = true, availableDates = false, availableWeekDays = false
+            
+            let calendar = new VanillaCalendar({
+                selector: "#myCalendar",
+                months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                shortWeekday: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                onSelect: (data, elem) => {
+                    console.log(data, elem)
+                }
+            })
+            
+            let btnPastDates = document.querySelector('[name=pastDates]')
+            btnPastDates.addEventListener('click', () => {
+                pastDates = !pastDates
+                calendar.set({pastDates: pastDates})
+                btnPastDates.innerText = `${(pastDates ? 'Disable' : 'Enable')} past dates`
+            })
+            
+            let btnAvailableDates = document.querySelector('[name=availableDates]')
+            btnAvailableDates.addEventListener('click', () => {
+                availableDates = !availableDates
+                btnAvailableDates.innerText = `${(availableDates ? 'Clear available dates' : 'Set available dates')}`
+                if (!availableDates) {
+                    calendar.set({availableDates: [], datesFilter: false})
+                    return
+                }
+                let dates = () => {
+                    let result = []
+                    for (let i = 1; i < 15; ++i) {
+                        if (i % 2) continue
+                        let date = new Date(new Date().getTime() + (60 * 60 * 24 * 1000) * i)
+                        result.push({date: `${String(date.getFullYear())}-${String(date.getMonth() + 1).padStart(2, 0)}-${String(date.getDate()).padStart(2, 0)}`})
+                    }
+                    return result
+                }
+                calendar.set({availableDates: dates(), availableWeekDays: [], datesFilter: true})
+            })
+            
+            let btnAvailableWeekDays = document.querySelector('[name=availableWeekDays]')
+            btnAvailableWeekDays.addEventListener('click', () => {
+                availableWeekDays = !availableWeekDays
+                btnAvailableWeekDays.innerText = `${(availableWeekDays ? 'Clear available weekdays' : 'Set available weekdays')}`
+                if (!availableWeekDays) {
+                    calendar.set({availableWeekDays: [], datesFilter: false})
+                    return
+                }
+                let days = [{
+                    day: 'monday'
+                }, {
+                    day: 'tuesday'
+                }, {
+                    day: 'wednesday'
+                }, {
+                    day: 'friday'
+                }]
+                calendar.set({availableWeekDays: days, availableDates: [], datesFilter: true})
+            })
+        </script>
+    </body>
+</html>
