@@ -14,6 +14,13 @@
         <div class="content">
             <h2>VanillaCalendar</h2>
             <p>It's a simple calendar in JS Vanilla</p>
+
+            <div class="area-buttons">
+                <button class="info" name="pastDates">Disable past dates</button>
+                <button class="info" name="availableDates">Set available dates</button>
+                <button class="info" name="availableWeekDays">Set available weekdays</button>
+            </div>
+            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
             
             <h3>Options</h3>
             <table>
@@ -197,14 +204,6 @@ let calendar = new VanillaCalendar({
 <pre>
 calendar.set({datesFilter: true})
 </pre>
-        </div>
-        <div>
-            <div class="area-buttons">
-                <button class="info" name="pastDates">Disable past dates</button>
-                <button class="info" name="availableDates">Set available dates</button>
-                <button class="info" name="availableWeekDays">Set available weekdays</button>
-            </div>
-            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
         </div>
         <script>
             let pastDates = true, availableDates = false, availableWeekDays = false
